@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [App\Http\Controllers\PemesananController::class, 'index'])->name('index');
-Route::post('/', [App\Http\Controllers\PemesananController::class, 'store'])->name('pesan');
+Route::get('/', [App\Http\Controllers\ViewController::class, 'index'])->name('index');
+Route::get('/galeri', [App\Http\Controllers\ViewController::class, 'galeri'])->name('galeri');
+Route::get('/pemesanan', [App\Http\Controllers\PemesananController::class, 'index'])->name('pemesanan');
+Route::post('/pemesanan', [App\Http\Controllers\PemesananController::class, 'store'])->name('pesan');
