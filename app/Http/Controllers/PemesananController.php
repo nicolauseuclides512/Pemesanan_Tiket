@@ -14,9 +14,10 @@ class PemesananController extends Controller
         return view('pemesanan', compact('data_tempat_wisata'));
     }
 
-    public function create(){
-        return view('pemesanan');
-    }
+//    public function create(){
+//        $data_tempat_wisata = TempatWisata::query()->get();
+//        return view('pemesanan', compact('data_tempat_wisata'));
+//    }
 
     public function store(Request $request){
         dd($request->all());
@@ -32,9 +33,6 @@ class PemesananController extends Controller
             $persetujuan_val=true;
         }
 
-
-
-
         Pesanan::create([
             'tanggal_kunjungan'=>$request->tanggal,
             'pengunjung_dewasa'=>$request->pengunjung_dewasa,
@@ -45,14 +43,15 @@ class PemesananController extends Controller
             'id_pemesan'=>$pemesan->id,
             'id_tempat_wisata'=>$request->wisata
         ]);
+
         $request->validate([
             'nama_pemesan'=>'required',
-            'nomor_identitas'=>'required',
+            'nomor_identitas'=>'required|numeric',
             'no_hp'=>'required',
             'nama_tempat_wasata'=>'required',
             'tanggal_kunjungan' => 'required',
             'pengunjung_dewasa' => 'required|numeric',
-            'pengunjung_anak_anak' => 'required|image|mimes:jpg,png,jpeg',
+            'pengunjung_anak_anak' => 'required|numeric',
             'harga_tiket'=>'required',
             'total_bayar' => 'required',
             'persetujuan' => 'required',
